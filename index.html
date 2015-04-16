@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<title>Zoomable Treemaps with Color</title>
+<title>Obesity Percentage in US (2010)</title>
 <style>
 
 #chart {
@@ -70,12 +70,10 @@ body {
 
 </style>
 
-<header>
-  <aside>Adapted from Mike Bostock's <a href="http://bost.ocks.org/mike/treemap/">Zoomable Treemaps</a></aside>
-</header>
-
-<h1>Zoomable Treemaps, with Color</h1>
-<p>Hover on any cell to see next level of detail, or click on a cell to zoom in. Click on the top label to zoom out.</p>
+<h1>Obesity % in Adults in US (2010)</h1>
+<p><strong>Hover to see detail</strong></p>
+<p><strong>Click to zoom</strong></p>
+<p><strong>Click top bar to zoom out</strong></p>
 <p id="chart">
 
 <script src="d3.js"></script>
@@ -226,7 +224,7 @@ d3.json("cleanobesity.json", function(root) {
       .select("text")
         .text(name(d))
 
-    // color header based on grandparent's value 
+    // color header based on grandparent's value
     grandparent
       .datum(d.parent)
       .select("rect")
@@ -259,13 +257,13 @@ d3.json("cleanobesity.json", function(root) {
     function shorten_name(name) {
       var len = 5
       if (name.length > len) {
-        return name.substr(0, len); 
+        return name.substr(0, len);
       }
       return name;
     }
     g.append("text")
         .attr("dy", ".75em")
-        .text(function(d) { return d.name })
+        .text(function(d) { return d.name + " " + Math.round(d.rate * 10)/10})
         .call(text);
 
     function transition(d) {
